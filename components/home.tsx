@@ -13,6 +13,7 @@ import Items from './items'
 export default function Home() {
   const [view, setView] = useState('')
   const [shoppingCart, setShoppingCart] = useState<[]>()
+  const [inventoryList, setInventoryList] = useState()
   const home: RefObject<Button> | null = useRef(null)
   const cart = useRef(null)
 
