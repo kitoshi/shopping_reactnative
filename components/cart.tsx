@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { Text } from 'react-native'
 import { useEffect, useState } from 'react'
 import { InventoryItem } from './items'
 interface Props {
@@ -10,7 +10,7 @@ export default function Cart(props: Props) {
     setShoppingCartList(props.shoppingCart)
 
     return () => {
-      console.log('nothing')
+      null
     }
   }, [props.shoppingCart])
 
@@ -18,7 +18,7 @@ export default function Cart(props: Props) {
     return <Text>Empty!</Text>
   } else {
     const shoppingCartList = props.shoppingCart.map((item, idx) => (
-      <div key={idx}>{item.title}</div>
+      <Text key={idx}>{item.title}</Text>
     ))
     return <>{shoppingCartList}</>
   }

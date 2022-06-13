@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  GestureResponderEvent
-} from 'react-native'
+import { View, Button, StyleSheet, GestureResponderEvent } from 'react-native'
 import inventory from '../data/inventory_list.json'
 import { useEffect, useState } from 'react'
 
@@ -24,15 +18,7 @@ interface Props {
 }
 
 export default function Items(props: Props) {
-  const [inventoryList, setInventoryList] = useState<InventoryItem[]>()
   const [cartList, setCartList] = useState<InventoryItem[]>()
-  useEffect(() => {
-    setInventoryList(inventory)
-
-    return () => {
-      null
-    }
-  }, [])
 
   useEffect(() => {
     props.setShoppingCart(cartList)
@@ -50,8 +36,20 @@ export default function Items(props: Props) {
   }
 
   const listArray = inventory.map((item) => (
-    <Button title={item.title} color='green' onPress={(e) => addItem(e, item)}></Button>
+    <Button
+      title={item.title}
+      color='green'
+      onPress={(e) => addItem(e, item)}
+    ></Button>
   ))
 
-  return <>{listArray}</>
+  return <View style={styles.list}>{listArray}</View>
 }
+
+const styles = StyleSheet.create({
+  list: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
+  }
+})

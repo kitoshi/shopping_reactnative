@@ -1,19 +1,21 @@
 import {
-  ReactComponentElement,
   useState,
   useRef,
-  ReactEventHandler,
-  MutableRefObject,
   RefObject
 } from 'react'
-import { View, Text, Button, StyleSheet, GestureResponderEvent } from 'react-native'
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  GestureResponderEvent
+} from 'react-native'
 import Cart from './cart'
 import Items, { InventoryItem } from './items'
 
 export default function Home() {
   const [view, setView] = useState('')
   const [shoppingCart, setShoppingCart] = useState<InventoryItem[]>()
-  const [inventoryList, setInventoryList] = useState()
   const home: RefObject<Button> | null = useRef(null)
   const cart = useRef(null)
 
@@ -61,7 +63,6 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center'
   },
   navbar: {
@@ -70,5 +71,8 @@ const styles = StyleSheet.create({
   },
   icon_number: {
     color: 'red'
+  },
+  list: {
+    flexDirection: 'row'
   }
 })
