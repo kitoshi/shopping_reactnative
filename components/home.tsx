@@ -51,7 +51,7 @@ export default function Home() {
       </View>
       <View style={view === 'cart' ? styles.container : { display: 'none' }}>
         <Text>Welcome to the shopping cart</Text>
-        <Cart />
+        <Cart shoppingCart={shoppingCart} />
       </View>
     </>
   )
