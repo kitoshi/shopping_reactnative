@@ -1,8 +1,14 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  GestureResponderEvent
+} from 'react-native'
 import inventory from '../data/inventory_list.json'
 import { useEffect, useState } from 'react'
 
-interface InventoryItem {
+export interface InventoryItem {
   title: string
   type: string
   description: string
@@ -13,13 +19,13 @@ interface InventoryItem {
   rating: number
 }
 
-interface InventoryList {
-  item?: InventoryItem
+interface Props {
+  setShoppingCart: (list?: InventoryItem[]) => void
 }
 
-export default function Items(props: any) {
-  const [inventoryList, setInventoryList] = useState<InventoryList>()
-  const [cartList, setCartList] = useState<string[]>()
+export default function Items(props: Props) {
+  const [inventoryList, setInventoryList] = useState<InventoryItem[]>()
+  const [cartList, setCartList] = useState<InventoryItem[]>()
   useEffect(() => {
     setInventoryList(inventory)
 
@@ -32,11 +38,11 @@ export default function Items(props: any) {
     props.setShoppingCart(cartList)
   }, [cartList])
 
-  function addItem(e: any) {
+  function addItem(e: GestureResponderEvent, item: InventoryItem): void {
     if (!cartList) {
-      setCartList([e.target.textContent])
+      setCartList([item])
     } else {
-      const addedItem = e.target.textContent
+      const addedItem = item
       const prevList = [...cartList]
       prevList.push(addedItem)
       setCartList(prevList)
@@ -44,7 +50,7 @@ export default function Items(props: any) {
   }
 
   const listArray = inventory.map((item) => (
-    <Button title={item.title} color='green' onPress={addItem}></Button>
+    <Button title={item.title} color='green' onPress={(e) => addItem(e, item)}></Button>
   ))
 
   return <>{listArray}</>

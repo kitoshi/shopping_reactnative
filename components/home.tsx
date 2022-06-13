@@ -6,21 +6,21 @@ import {
   MutableRefObject,
   RefObject
 } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, Button, StyleSheet, GestureResponderEvent } from 'react-native'
 import Cart from './cart'
-import Items from './items'
+import Items, { InventoryItem } from './items'
 
 export default function Home() {
   const [view, setView] = useState('')
-  const [shoppingCart, setShoppingCart] = useState<[]>()
+  const [shoppingCart, setShoppingCart] = useState<InventoryItem[]>()
   const [inventoryList, setInventoryList] = useState()
   const home: RefObject<Button> | null = useRef(null)
   const cart = useRef(null)
 
-  function handleHomeButton(e: any): void {
+  function handleHomeButton(e: GestureResponderEvent): void {
     setView('home')
   }
-  function handleCartButton(e: any): void {
+  function handleCartButton(e: GestureResponderEvent): void {
     setView('cart')
   }
   return (
