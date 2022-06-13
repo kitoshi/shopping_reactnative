@@ -12,6 +12,7 @@ import Items from './items'
 
 export default function Home() {
   const [view, setView] = useState('')
+  const [shoppingCart, setShoppingCart] = useState<[]>()
   const home: RefObject<Button> | null = useRef(null)
   const cart = useRef(null)
 
@@ -23,7 +24,7 @@ export default function Home() {
   }
   return (
     <>
-      <View>
+      <View style={styles.navbar}>
         <Button
           onPress={handleHomeButton}
           title='Home'
@@ -36,6 +37,7 @@ export default function Home() {
           ref={cart}
           accessibilityLabel='Cart'
         />
+        <Text style={styles.icon_number}>{shoppingCart?.length}</Text>
       </View>
       <View
         style={
@@ -45,7 +47,7 @@ export default function Home() {
         }
       >
         <Text>Welcome to the Store</Text>
-        <Items />
+        <Items setShoppingCart={setShoppingCart} />
       </View>
       <View style={view === 'cart' ? styles.container : { display: 'none' }}>
         <Text>Welcome to the shopping cart</Text>
@@ -60,5 +62,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  navbar: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  icon_number: {
+    color: 'red'
   }
 })
