@@ -40,6 +40,7 @@ export default function Items(props: Props) {
       title={item.title}
       color='green'
       onPress={(e) => addItem(e, item)}
+      key={item.title}
     ></Button>
   ))
 

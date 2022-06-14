@@ -1,4 +1,5 @@
 import { Text } from 'react-native'
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { InventoryItem } from './items'
 interface Props {
@@ -17,9 +18,9 @@ export default function Cart(props: Props) {
   if (!shoppingCartList || !props.shoppingCart) {
     return <Text>Empty!</Text>
   } else {
-    const shoppingCartList = props.shoppingCart.map((item, idx) => (
-      <Text key={idx}>{item.title}</Text>
-    ))
+    const shoppingCartList = React.Children.toArray(props.shoppingCart.map((item) => (
+      <Text>{item.title}</Text>
+    )))
     return <>{shoppingCartList}</>
   }
 }
