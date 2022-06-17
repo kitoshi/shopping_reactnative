@@ -1,0 +1,24 @@
+fragment TransactionFields on Transaction {
+  amount {
+    currency
+    instructedAmount
+  }
+  endToEndIdentifier
+  transactionId
+  status
+  transactionReference
+  transactionDate
+  transactionType
+}
+
+fragment TranscationPaginatedFields on TransactionConnection {
+  edges {
+    cursor
+    node {
+      ...TransactionFields
+    }
+  }
+  pageInfo {
+    hasNextPage
+  }
+}

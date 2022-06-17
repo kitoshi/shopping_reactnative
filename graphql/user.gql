@@ -1,0 +1,18 @@
+query User {
+  result: me {
+    name
+    firstName
+    kycStatus
+    accounts {
+      accountNumber
+      iban
+      sortCode
+      balances {
+        amount
+      }
+      transactions(first: 6) {
+        ...TranscationPaginatedFields
+      }
+    }
+  }
+}

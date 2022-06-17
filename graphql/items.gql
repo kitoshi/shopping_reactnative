@@ -1,0 +1,6 @@
+  query GetFruitItems {
+    item(type: "dairy") {
+      title
+      price
+    }
+  }
